@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+
+   <head>
+      <title>Weather API</title>
+      
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="styles/styles.css">
+      <script src="libs/axios.min.js"></script>
+     
+   </head>
+
+   <body>
+      <div class="container">
+        <h2>API Project: Weather Data</h2>
+        
+        <blockquote class="alert-info">
+          <h3>User Story: </h3>
+        <ol>
+          <li>I can GET a request to <code><%= website %>/api</code> and i will receive automatically determined weather data for my IP address in JSON response.</li>
+          <li>I can GET a request to <code><%= website %>/api?location=mycity</code> and i will receive weather data for "mycity" in JSON response.</li>
+          <li>If I pass an invalid location that doesn't follow the proper get request format, the JSON response will contain an error like <code>{"error": "Actually ... we havent a clue"}</code><br>
+        </ol>
+        </blockquote>
+        <h3>Short URL Creation: </h3>
+        <p>
+          example: <code><%= website %>/api?location="japan"></code> - <code>https://www.google.com</code>
+        </p>
+          <form>
+            
+            <div class="form-group">
+            
+              <label for="location">Search weather for: </label>
+            
+           
+              <input id="location" type="text" name="url" placeholder="Address, city or postal code"><br>
+            
+              <button type="submit" id="sendUrl" class="btn btn-info">Search Data</button><br>
+            </div>
+          </form>
+
+        <div>
+          <blockquote class="alert-success"><h2>Sample Response:</h2><pre id="displayWeatherData"></pre></blockquote>
+        </div>
+
+      </div>
+      
+   </body>
+  
+   <script>
+
+      document.getElementById("sendUrl").addEventListener("click", fetchData);
+
+      function fetchData(e){
+        e.preventDefault();
+
+        let input = document.getElementById("location");
+        let city = input.value;
+
+        if (city.length === 0){
+          return;
+        }
+
+        input.value = "";
+
+        axios.get(`/api?location=${city}`).then(function(res){
+          let target = document.getElementById("displayWeatherData");
+          target.innerHTML = JSON.stringify(res.data, undefined, 4);
+        });
+
+        return false;
+      }
+   </script>
+</html>

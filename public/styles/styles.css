@@ -1,0 +1,17 @@
+body {
+  background: #eee;
+  
+}
+
+pre:empty {
+  display: none;
+}
+
+form {
+  margin: 30px 0;
+}
+
+#location {
+  border: none;
+  width: 200px;
+}
