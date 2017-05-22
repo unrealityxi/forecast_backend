@@ -57,6 +57,9 @@ app.get("/api", function(req, res){
     let lng;
 
     // response.data.results is the way google api responds
+    // if (response.data.status === "ZERO_RESULTS"){
+        
+    // }
     if (response.data.results){
       data = response.data.results[0];
       req.address = data.formatted_address;
@@ -82,7 +85,7 @@ app.get("/api", function(req, res){
     response.data.address = req.address;
     res.send(response.data);
   }).catch((e) => {
-    return console.log(e);
+    return res.send({"error": "Actually ... we haven't a clue"});;
   });
 
 });
