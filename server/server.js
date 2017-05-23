@@ -5,7 +5,7 @@ const helmet = require("helmet");
 const path = require("path");
 
 const PORT = process.env.PORT || 3000;
-const KEY = process.env.KEY;
+const KEY = process.env.KEY || "8c727caf6986d2ec011d65331644a320";
 const publicPath = path.join(__dirname, "../public");
 
 const geoCodeUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=";

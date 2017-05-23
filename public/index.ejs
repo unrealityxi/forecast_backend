@@ -41,7 +41,7 @@
           </form>
 
         <div>
-          <blockquote class="alert-success"><h2>Sample Response:</h2><pre id="displayWeatherData"></pre></blockquote>
+          <blockquote id="dataWraper"class="alert-info"><h2>Sample Response:</h2><pre id="displayWeatherData"></pre></blockquote>
         </div>
 
       </div>
@@ -51,6 +51,8 @@
    <script>
 
       document.getElementById("sendUrl").addEventListener("click", fetchData);
+      let wraper = document.getElementById("dataWraper");
+
 
       function fetchData(e){
         e.preventDefault();
@@ -66,6 +68,15 @@
 
         axios.get(`/api?location=${city}`).then(function(res){
           let target = document.getElementById("displayWeatherData");
+          if (res.data.error){
+            wraper.classList.remove("alert-info", "alert-success");
+            wraper.classList.add("alert-danger");
+          } else {
+            wraper.classList.remove("alert-info", "alert-danger");
+            wraper.classList.add("alert-success");
+          }
+          
+
           target.innerHTML = JSON.stringify(res.data, undefined, 4);
         });
 
