@@ -29,12 +29,19 @@ app.get("/", function(req, res){
 // route for ajax call, returns json data
 app.get("/api", function(req, res){
 
-  // city/address information from the client
-  let city = encodeURIComponent(req.query.location);
-  let ip = req.headers["x-forwarded-for"].split(",")[0] || req.connection.remoteAddress;
-
+  let ip;
   let website;
   let address;
+
+  // Determine clients ip address 
+  if (req.headers["x-forwarded-for"]){
+    ip = req.headers["x-forwarded-for"].split(",")[0];
+  } else {
+    ip = req.connection.remoteAddress;
+  }
+
+  // city/address information from the client
+  let city = encodeURIComponent(req.query.location);
 
   // if city or address was provided through get request, 
   // sets things up for rest of the route to make call 
