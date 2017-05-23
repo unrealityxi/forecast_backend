@@ -85,7 +85,7 @@ app.get("/api", function(req, res){
     response.data.address = req.address;
     res.send(response.data);
   }).catch((e) => {
-    return res.send({"error": "Actually ... we haven't a clue"});
+    return res.send({"error": "Actually ... we haven't a clue", "ip": ip});
   });
 
 });
