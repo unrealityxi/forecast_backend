@@ -31,7 +31,7 @@ app.get("/api", function(req, res){
 
   // city/address information from the client
   let city = encodeURIComponent(req.query.location);
-  let ip = req.connection.remoteAddress || req.headers["x-forwarded-for"].split(",")[0];
+  let ip = req.headers["x-forwarded-for"].split(",")[0] || req.connection.remoteAddress;
 
   let website;
   let address;
