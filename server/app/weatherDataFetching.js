@@ -71,7 +71,7 @@ function attemptToFetchWeatherDataAutomatically(req, res){
     response.data.address = req.address;
     res.send(response.data);
   }).catch((e) => {
-    return res.send({"error": `Fetching weather data for ${ip} failed`, "errorMessage": e});
+    return res.send({"error": `Fetching weather data for ${ip} failed`, "errorMessage": e.message});
   });
 
 }

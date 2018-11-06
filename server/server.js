@@ -28,6 +28,7 @@ app.get("/api", function(req, res){
   let lat = req.query.lat;
   let lon = req.query.lon;
 
+  console.log("Made it here");
   if (lat && lon){   
     dataFetcher.fetchWeatherDataForLonLat(lon, lat, res)
   } else {
